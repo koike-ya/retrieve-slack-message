@@ -6,3 +6,6 @@ tqdm
 janome
 joblib
 wordcloud
+google-cloud-bigquery
+pymongo
+pymongo[srv]
