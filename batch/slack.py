@@ -1,9 +1,10 @@
+import os
 from enum import Enum
 import requests
-import tqdm
+from tqdm import tqdm
 
 
-TOKEN = "xoxb-659631020560-2531853286371-eRjrA31Vt3CwY7qGR7Rxxd70"
+TOKEN = os.environ['SLACK_MESSAGE_SLACK_TOKEN']
 
 
 class RequestType(Enum):
@@ -114,7 +115,7 @@ def retrieve_conversation_reply(retrieval_history_client, data_client, channels)
 
         for message in messages:
             thread_ts = message['ts']
-            latest_ts_history = retrieval_history_client.find_latest_history_ts(
+            latest_ts_history = retrieval_history_client.find_latest_reply_ts(
                 channel_id, thread_ts)
             latest_reply_ts = latest_ts_history.get(
                 'ts', 0) if latest_ts_history else 0
